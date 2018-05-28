@@ -2,8 +2,11 @@ import sys
 from PyQt5.QtWidgets import *
 import requests
 import nmap
+<<<<<<< HEAD
 from scapy.all import *
 
+=======
+>>>>>>> master
 
 class App(QMainWindow):
     def __init__(self):
@@ -28,6 +31,7 @@ class MainWidget(QWidget):
         super(QWidget, self).__init__(parent)
         self.layout_req = QVBoxLayout(self)
         self.layout_nmap = QVBoxLayout(self)
+<<<<<<< HEAD
         self.layout_packet = QVBoxLayout(self)
         self.layout_help = QVBoxLayout(self)
 
@@ -43,6 +47,15 @@ class MainWidget(QWidget):
         self.tabs.addTab(self.tab2, "NMAP")
         self.tabs.addTab(self.tab3, "Send Packet")
         self.tabs.addTab(self.tab4, "HELP")
+=======
+
+        self.tabs = QTabWidget()
+        self.tab1 = QWidget()
+        self.tab2 = QWidget()
+
+        self.tabs.addTab(self.tab1, "GET POST request")
+        self.tabs.addTab(self.tab2, "NMAP")
+>>>>>>> master
 
         # ---tab 1 ---
         self.tab1.layout = QVBoxLayout(self)
@@ -68,11 +81,18 @@ class MainWidget(QWidget):
         self.url_html_result.setText("HTML result")
 
         self.result = QPlainTextEdit(self)
+<<<<<<< HEAD
 
 
         self.save_button = QPushButton(self)
         self.save_button.setText("Export in the text")
         self.save_button.clicked.connect(self.export)
+=======
+        self.result.setReadOnly(True)
+
+        self.save_button = QPushButton(self)
+        self.save_button.setText("Export in the text")
+>>>>>>> master
 
         self.tab1.layout.addWidget(self.urlLabel)
         self.tab1.layout.addWidget(self.select)
@@ -101,6 +121,7 @@ class MainWidget(QWidget):
         self.nmap_exe.setText("Execute Port Scan")
         self.nmap_exe.clicked.connect(self.executeNmap)
 
+<<<<<<< HEAD
         self.port_start_lb = QLabel(self)
         self.port_start_lb.setText("start port")
         self.port_start = QPlainTextEdit(self)
@@ -120,10 +141,20 @@ class MainWidget(QWidget):
         self.tab2.layout.addWidget(self.port_end_lb)
         self.tab2.layout.addWidget(self.port_end)
 
+=======
+        self.nmap_resultLabel = QLabel(self)
+        self.nmap_resultLabel.setText("Port Scan results")
+        self.nmap_result = QPlainTextEdit(self)
+        self.nmap_result.setReadOnly(True)
+
+        self.tab2.layout.addWidget(self.nmapLabel)
+        self.tab2.layout.addWidget(self.nmapurl)
+>>>>>>> master
         self.tab2.layout.addWidget(self.nmap_exe)
         self.tab2.layout.addWidget(self.nmap_resultLabel)
         self.tab2.layout.addWidget(self.nmap_result)
 
+<<<<<<< HEAD
         # add whole
         self.tab2.setLayout(self.tab2.layout)
         self.layout_nmap.addWidget(self.tabs)
@@ -174,6 +205,13 @@ class MainWidget(QWidget):
         self.setLayout(self.layout_help)
 
 
+=======
+        self.tab2.setLayout(self.tab2.layout)
+        # add whole
+        self.layout_nmap.addWidget(self.tabs)
+        self.setLayout(self.layout_nmap)
+
+>>>>>>> master
     def retrieve_info(self):
         if str(self.url.toPlainText()) == "":
             msg = QMessageBox()
@@ -212,6 +250,7 @@ class MainWidget(QWidget):
             return
 
         nm = nmap.PortScanner()
+<<<<<<< HEAD
         start_port = str(self.port_start.toPlainText())
         end_port = str(self.port_end.toPlainText())
         port_range = str(start_port + "-" + end_port)
@@ -243,6 +282,10 @@ class MainWidget(QWidget):
         option = str(self.select_protocol.currentText())
         url = str(self.packet_url.toPlainText())
         #p = IP(dst=url)/ICMP()
+=======
+        nm.scan(self.nmapurl.toPlainText())
+
+>>>>>>> master
 
 
 if __name__ == "__main__":
